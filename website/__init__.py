@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_required, logout_user, current_user, login_user, UserMixin
+from flask_cors import CORS
 
 import json
 import os
@@ -18,6 +19,7 @@ from . import ScreenGoRoute
 
 def initialize_app():
     app = Flask(__name__)
+    CORS(app)
     app.config['SECRET_KEY'] = 'sdadsadakmi23e'
     UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__).replace('\\', '/'), 'static/_UM_')
     print(f"UF: ({UPLOAD_FOLDER})")
