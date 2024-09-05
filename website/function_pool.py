@@ -1,6 +1,7 @@
 from .db import dbORM
 import base64
 import imghdr
+from flask import jsonify
 import datetime as dt
 from datetime import datetime, timedelta
 from flask_login import login_required, current_user
@@ -46,6 +47,11 @@ def floatToInt(n):
 
 def StandardCurrency():
 	return "NGN"
+
+def returnJSONData(title, content):
+	return jsonify({
+		"message": {title: content}
+	})
 
 def getDateTime():
 	# Getting Date-Time Info
