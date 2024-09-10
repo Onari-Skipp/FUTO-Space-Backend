@@ -22,7 +22,7 @@ def initialize_app():
 
     allowed_origins = [
         "http://localhost:3000",
-        "https://futo-space.vercel.com"
+        "https://futo-space.vercel.app"
     ]
 
     CORS(app, resources={r"/*": {"origins": allowed_origins}})
