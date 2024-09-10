@@ -19,7 +19,21 @@ from . import ScreenGoRoute
 
 def initialize_app():
     app = Flask(__name__)
-    CORS(app)
+
+    allowed_origins = [
+        "http://localhost:3000",
+        "https://futo-space.vercel.com"
+    ]
+
+    CORS(app, resources={r"/*": {"origins": allowed_origins}})
+
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
+    
     app.config['SECRET_KEY'] = 'sdadsadakmi23e'
     UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__).replace('\\', '/'), 'static/_UM_')
     print(f"UF: ({UPLOAD_FOLDER})")
